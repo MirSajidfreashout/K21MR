@@ -14,17 +14,9 @@ void hanoi(int n, char beg, char end, char aux)
 }
 int main()
 {
-    cout<<"Enter number of disks: ";
-    ios_base::sync_with_stdio(0);
-
-
-
-
-    
-    cin.tie(0);
-    cout.tie(0);
-    int n;
-    cin>>n;
-    hanoi(n,'A','C','B');
+    // unsigned int i = 0;
+    // int j = -1;
+    // cout<<(i > j);
+    hanoi(5, 'A', 'B', 'C');
     return 0;
 }
