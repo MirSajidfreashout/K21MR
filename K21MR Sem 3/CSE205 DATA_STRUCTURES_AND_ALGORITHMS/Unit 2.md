@@ -17,7 +17,6 @@ Node *head = NULL; // global head pointer
 void insertAtHead(int data)
 {
 	Node *newNode = new Node;
-	Node *ptr;
 	newNode->data = data; // insert data into data part of node
 	newNode->next = head; // point head ot next of the added node
 	head = newNode;		  // head will contain pointer of the newly added node
