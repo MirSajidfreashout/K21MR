@@ -1,66 +1,112 @@
 #include <bits/stdc++.h>
 using namespace std;
-void merge(int arr[], int left, int mid, int right)
+
+class Node
 {
-    int i, j, k;
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
-    int leftArr[n1], rightArr[n2];
-    for (int i = 0; i < n1; i++)
-        leftArr[i] = arr[i + left];
-    for (int j = 0; j < n2; i++)
-        rightArr[j] = arr[j + mid + 1];
-    i = 0;
-    j = 0;
-    k = left;
-    while (i < n1 && j < n2)
+public:
+    int data;
+    Node *left, *right;
+};
+
+Node *newNode(int data)
+{
+    Node *newNode = new Node;
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+Node *insert(Node *root, int data)
+{
+    if (root == NULL)
+        return (newNode(data));
+    else
     {
-        if (leftArr[i] <= rightArr[j])
-        {
-            arr[k++] = leftArr[i++];
-        }
+        if (data <= root->data)
+            root->left = insert(root->left, data);
         else
+            root->right = insert(root->right, data);
+        return root;
+    }
+}
+void inorder(Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+
+// int search(Node *root, int key)
+// {
+//     if (root == NULL)
+//         cout << "Empty";
+//     if (root->data == key)
+//         return root->data;
+//     else if (root->data > key)
+//         return search(root->left, key);
+//     else
+//         return search(root->right, key);
+// }
+
+Node* minNode(Node *root)
+{
+    if (root->left == NULL)
+        return root;
+    return minNode(root->left);
+}
+
+Node *deleteNode(Node *root, int item)
+{
+    if (root == NULL)
+        return root;
+    else if (item < root->data)
+        root->left = deleteNode(root->left, item);
+    else if (item > root->data)
+        root->right = deleteNode(root->right, item);
+    else
+    {
+        if (root->left == NULL && root->right == NULL)
+            return NULL;
+        if (root->left == NULL)
         {
-            arr[k++] = rightArr[j++];
+            Node* t = root->right;
+            free(root);
+            return t;
         }
-    }
-    while (i < n1)
-    {
-        arr[k++] = leftArr[i++];
-    }
-    while (j < n2)
-    {
-        arr[k++] = rightArr[j++];
-    }
-}
+        else if (root->right == NULL)
+        {
+            Node* t = root->left;
+            free(root);
+            return t;
+        }
+        Node* t = minNode(root->right);
+        root->data = t->data;
+        deleteNode(root->right, t->data);
 
-void mergeSort(int a[], int left, int right)
-{
-    if (left < right)
-    {
-
-        int mid = (left + right) / 2;
-        mergeSort(a, left, mid);
-        mergeSort(a, mid + 1, right);
-
-        merge(a, left, mid, right);
     }
-}
-
-void printArray(int arr[], int n)
-{
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
+    return root;
 }
 
 int main()
 {
-    int arr[] = {7, 8, 3, 9, 1, 3, 2, 0, 7, 7};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    mergeSort(arr, 0, n - 1);
-    printArray(arr, n);
+    Node *root = NULL;
+    root = insert(root, 1);
+    root = insert(root, 2);
+    root = insert(root, 4);
+    root = insert(root, 8);
+    root = insert(root, 16);
+    root = insert(root, 7);
+    root = insert(root, 3);
+
+    inorder(root);
+    cout<<endl;
+    deleteNode(root, 3);
+    inorder(root);
+    // cout << minNode(root);
     return 0;
 }
