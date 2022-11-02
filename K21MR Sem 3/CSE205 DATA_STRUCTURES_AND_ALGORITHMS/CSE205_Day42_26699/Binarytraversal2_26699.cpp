@@ -58,7 +58,6 @@ int main()
     int y;
     cin >> y;
     root = insert(root, y);
-    cout << endl;
     cout << maxDepth(root) - 1;
     return 0;
 }
