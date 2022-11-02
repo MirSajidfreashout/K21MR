@@ -1,11 +1,37 @@
-def pow(b, p):
-    y = b ** p
-    return y
+# import mysql.connector
 
-def square(x):
-    a = pow(x, 2)
-    return a
+# mydb = mysql.connector.connect(
+#   host="localhost",
+#   user="root",
+#   password="root",
+#   database = "mydatabase"
+# )
 
-n = 5
-result = square(n)
-print(result)
+# mycursor = mydb.cursor()
+
+# # mycursor.execute("CREATE DATABASE mydatabase")
+
+# # mycursor.execute("SHOW DATABASES")
+
+# # mycursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
+
+# sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
+# # val = ("John", "Highway 21")
+# val1 = ("Ayan", "Highway 34")
+# mycursor.execute(sql, val1)
+
+# mydb.commit()
+
+# mycursor.execute("SELECT * FROM customers")
+
+# myresult = mycursor.fetchall()
+
+# for x in myresult:
+#     print(x)
+
+# # print(mydb)
+
+a = int(input("num1: "))
+b = int(input("num2: "))
+c = int(input("num3: "))
+print(max(max(a,b),c))
