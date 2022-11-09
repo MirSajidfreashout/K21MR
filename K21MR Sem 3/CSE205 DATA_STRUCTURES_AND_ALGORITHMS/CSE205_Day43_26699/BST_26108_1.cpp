@@ -132,4 +132,4 @@ int main(){
     if(node->left != nullptr) cout<<"Left of "<<node->val;
     else cout<<"Right of "<<node->parent->parent->val;
 return 0;
-}
+}w
