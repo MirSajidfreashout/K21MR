@@ -47,11 +47,10 @@ def order_window():
 
 def ordered_window_final():
     ordered_final = Tk()
-    ordered_window_final = Toplevel(ordered_final)
-    ordered_window_final.geometry("200x200")
-    label1 = Label(ordered_final, text="Ordered")
-    label1.pack()
-    ordered_window_final.destroy()
+    new = Toplevel(ordered_final)
+    new.geometry("200x200")
+    label1 = Label(new, text="Ordered")
+    label201.place(x=20, y=20)
 
 def cancel_window():
     cancelWindow = Toplevel(master)
