@@ -1,6 +1,4 @@
-from doctest import master
 from tkinter import *
-import time
 root = Tk()
 root.geometry("400x400")
 root.title("Main Menu")
@@ -9,8 +7,10 @@ head = Label(root, textvariable=var)
 var.set("PIZZA DELIVERY SYSTEM\nARE YOU A:")
 head.pack()
 
+
+# function to bring the customer main menu window
 def customer_window():
-    newWindow = Toplevel(master)
+    newWindow = Toplevel(root)
     newWindow.geometry("500x500")
     newWindow.title("Customer")
     order = Button(newWindow, text="Order Pizza", width=25, command=order_window)
@@ -22,21 +22,23 @@ def customer_window():
     track_order.pack()
     exit_button.pack()
 
+# function to bring the vendor main menu window
 def vendor_window():
-    newWindow = Toplevel(master)
+    newWindow = Toplevel(root)
     newWindow.geometry("500x500")
     newWindow.title("Vendor")
-    new_pizza_order = Button(newWindow, text="New Pizza Order", width=25, command=newWindow.destroy, pady=10)
-    cancelled_order = Button(newWindow, text="Cancelled Order", width=25, command=newWindow.destroy)
-    served_order = Button(newWindow, text="Served Order", width=25, command=newWindow.destroy)
-    exit_button = Button(newWindow, text="Pending Order", width=25, command=newWindow.destroy)
+    new_pizza_order = Button(newWindow, text="New Pizza Order", width=25, command=go_back)
+    cancelled_order = Button(newWindow, text="Cancelled Order", width=25, command=go_back)
+    served_order = Button(newWindow, text="Served Order", width=25, command=go_back)
+    pending_order = Button(newWindow, text="Pending Order", width=25, command=go_back)
     new_pizza_order.pack()
     cancelled_order.pack()
     served_order.pack()
-    exit_button.pack()
+    pending_order.pack()
 
+# function to bring the pizza selection menu window
 def order_window():
-    orderWindow = Toplevel(master)
+    orderWindow = Toplevel(root)
     orderWindow.geometry("500x500")
     orderWindow.title("Order Pizza")
     
@@ -45,22 +47,31 @@ def order_window():
     go_back.pack()
     order.pack()
 
+# function to show that the pizza is ordered
 def ordered_window_final():
-    ordered_final = Tk()
-    new = Toplevel(ordered_final)
+    new = Toplevel(root)
     new.geometry("200x200")
-    label1 = Label(new, text="Ordered")
-    label201.place(x=20, y=20)
+    new.title("Order Cancel")
+    Label(new, text="Ordered", font=(17)).pack(padx=20, pady=20)
 
+# function to show the pizza order cancellation window
 def cancel_window():
-    cancelWindow = Toplevel(master)
+    cancelWindow = Toplevel(root)
     cancelWindow.geometry("500x500")
     cancelWindow.title("Cancel Order")
+    Label(cancelWindow, text = "Order Cancel").pack()
 
+# function to show the order tracking window
 def track_window():
-    trackWindow = Toplevel(master)
+    trackWindow = Toplevel(root)
     trackWindow.geometry("500x500")
     trackWindow.title("Track Order")
+
+def go_back():
+    go_back = Toplevel(root)
+    go_back.geometry("200x200")
+    go_back.title("Under Construction")
+    Label(go_back, text="Under Construction", font=20).pack(padx=50, pady=50)
 
 customer_window_button = Button(root, text="Customer", width=25, command=customer_window)
 vendor_window_button = Button(root, text="Vendor", width=25, command=vendor_window)
