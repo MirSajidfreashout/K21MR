@@ -41,9 +41,24 @@ def order_window():
     orderWindow = Toplevel(root)
     orderWindow.geometry("500x500")
     orderWindow.title("Order Pizza")
-    
-    go_back = Button(orderWindow, text="Go Back", command=orderWindow.destroy).grid(row=0, column=0)
-    order = Button(orderWindow, text="Order Now", command=ordered_window_final).grid(row=0, column=1)
+    name_label = Label(orderWindow, text="Name")
+    name_label.grid(row=0, column=0)
+    name_entry = Entry(orderWindow, width=25)
+    name_entry.grid(row=0, column=1, columnspan=3)
+    address_label = Label(orderWindow, text="Address")
+    address_label.grid(row=1, column=0)
+    address_entry = Entry(orderWindow)
+    address_entry.grid(row=1, column=1)
+    type_label = Label(orderWindow, text="Pizza Type")
+    type_label.grid(row=2, column=0)
+    type1 = IntVar()
+    type2 = IntVar()
+    type3 = IntVar()
+    Checkbutton(orderWindow, text="Type 1", variable=type1).grid(row=2, column=1)
+    Checkbutton(orderWindow, text="Type 2", variable=type2).grid(row=2, column=2)
+    Checkbutton(orderWindow, text="Type 3", variable=type3).grid(row=2, column=3)
+    go_back = Button(orderWindow, text="Go Back", command=orderWindow.destroy).grid(row=3, column=0)
+    order = Button(orderWindow, text="Order Now", command=ordered_window_final).grid(row=3, column=1)
     go_back.pack()
     order.pack()
 
@@ -69,7 +84,7 @@ def track_window():
 
 def go_back():
     go_back = Toplevel(root)
-    go_back.geometry("200x200")
+    go_back.geometry("500x200")
     go_back.title("Under Construction")
     Label(go_back, text="Under Construction", font=20).pack(padx=50, pady=50)
 
