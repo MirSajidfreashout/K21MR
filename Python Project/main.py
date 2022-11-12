@@ -11,7 +11,7 @@ head.pack()
 # function to bring the customer main menu window
 def customer_window():
     newWindow = Toplevel(root)
-    newWindow.geometry("500x500")
+    newWindow.geometry("400x400")
     newWindow.title("Customer")
     order = Button(newWindow, text="Order Pizza", width=25, command=order_window)
     cancel = Button(newWindow, text="Cancel Order", width=25, command=cancel_window)
@@ -25,7 +25,7 @@ def customer_window():
 # function to bring the vendor main menu window
 def vendor_window():
     newWindow = Toplevel(root)
-    newWindow.geometry("500x500")
+    newWindow.geometry("400x400")
     newWindow.title("Vendor")
     new_pizza_order = Button(newWindow, text="New Pizza Order", width=25, command=go_back)
     cancelled_order = Button(newWindow, text="Cancelled Order", width=25, command=go_back)
@@ -39,7 +39,7 @@ def vendor_window():
 # function to bring the pizza selection menu window
 def order_window():
     orderWindow = Toplevel(root)
-    orderWindow.geometry("500x500")
+    orderWindow.geometry("400x400")
     orderWindow.title("Order Pizza")
     name_label = Label(orderWindow, text="Name")
     name_label.grid(row=0, column=0)
@@ -73,14 +73,14 @@ def order_window():
 # function to show that the pizza is ordered
 def ordered_window_final():
     new = Toplevel(root)
-    new.geometry("200x200")
+    new.geometry("400x400")
     new.title("Ordered")
     Label(new, text="Ordered", font=(17)).pack(padx=20, pady=20)
 
 # function to show the pizza order cancellation window
 def cancel_window():
     cancelWindow = Toplevel(root)
-    cancelWindow.geometry("500x500")
+    cancelWindow.geometry("400x400")
     cancelWindow.title("Cancel Order")
     name_label = Label(cancelWindow, text="Name")
     name_label.grid(row=0, column=0)
@@ -90,17 +90,22 @@ def cancel_window():
     order_id_label.grid(row=1, column=0)
     order_id_entry = Entry(cancelWindow)
     order_id_entry.grid(row=1, column=1)
-    Label(cancelWindow, text = "Order Cancel").pack()
+    Button(cancelWindow, text="Go Back", command=cancelWindow.destroy).grid(row=2, column=0)
+    Button(cancelWindow, text="Cancel Order").grid(row=2, column=1)
 
 # function to show the order tracking window
 def track_window():
     trackWindow = Toplevel(root)
-    trackWindow.geometry("500x500")
+    trackWindow.geometry("400x400")
     trackWindow.title("Track Order")
+    track_id_label = Label(trackWindow, text="Order ID")
+    track_id_label.grid(row=0, column=0)
+    track_id_entry = Entry(trackWindow)
+    track_id_entry.grid(row=0, column=1)
 
 def go_back():
     go_back = Toplevel(root)
-    go_back.geometry("500x200")
+    go_back.geometry("400x400")
     go_back.title("Under Construction")
     Label(go_back, text="Under Construction", font=20).pack(padx=50, pady=50)
 
