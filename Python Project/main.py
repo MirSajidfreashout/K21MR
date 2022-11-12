@@ -43,8 +43,8 @@ def order_window():
     orderWindow.title("Order Pizza")
     name_label = Label(orderWindow, text="Name")
     name_label.grid(row=0, column=0)
-    name_entry = Entry(orderWindow, width=25)
-    name_entry.grid(row=0, column=1, columnspan=3)
+    name_entry = Entry(orderWindow)
+    name_entry.grid(row=0, column=1)
     address_label = Label(orderWindow, text="Address")
     address_label.grid(row=1, column=0)
     address_entry = Entry(orderWindow)
@@ -57,8 +57,16 @@ def order_window():
     Checkbutton(orderWindow, text="Type 1", variable=type1).grid(row=2, column=1)
     Checkbutton(orderWindow, text="Type 2", variable=type2).grid(row=2, column=2)
     Checkbutton(orderWindow, text="Type 3", variable=type3).grid(row=2, column=3)
-    go_back = Button(orderWindow, text="Go Back", command=orderWindow.destroy).grid(row=3, column=0)
-    order = Button(orderWindow, text="Order Now", command=ordered_window_final).grid(row=3, column=1)
+    mobile_num_label = Label(orderWindow, text="Mobil No.")
+    mobile_num_label.grid(row=3, column=0)
+    mobile_num_entry = Entry(orderWindow)
+    mobile_num_entry.grid(row=3, column=1)
+    email_label = Label(orderWindow, text="E-Mail")
+    email_label.grid(row=4, column=0)
+    email_entry = Entry(orderWindow)
+    email_entry.grid(row=4, column=1)
+    go_back = Button(orderWindow, text="Go Back", command=orderWindow.destroy).grid(row=5, column=0)
+    order = Button(orderWindow, text="Order Now", command=ordered_window_final).grid(row=5, column=1)
     go_back.pack()
     order.pack()
 
@@ -66,7 +74,7 @@ def order_window():
 def ordered_window_final():
     new = Toplevel(root)
     new.geometry("200x200")
-    new.title("Order Cancel")
+    new.title("Ordered")
     Label(new, text="Ordered", font=(17)).pack(padx=20, pady=20)
 
 # function to show the pizza order cancellation window
@@ -74,6 +82,14 @@ def cancel_window():
     cancelWindow = Toplevel(root)
     cancelWindow.geometry("500x500")
     cancelWindow.title("Cancel Order")
+    name_label = Label(cancelWindow, text="Name")
+    name_label.grid(row=0, column=0)
+    name_entry = Entry(cancelWindow)
+    name_entry.grid(row=0, column=1)
+    order_id_label = Label(cancelWindow, text="Order ID")
+    order_id_label.grid(row=1, column=0)
+    order_id_entry = Entry(cancelWindow)
+    order_id_entry.grid(row=1, column=1)
     Label(cancelWindow, text = "Order Cancel").pack()
 
 # function to show the order tracking window
