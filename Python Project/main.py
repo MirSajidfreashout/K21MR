@@ -150,8 +150,8 @@ def go_back():
     go_back = Toplevel(root)
     go_back.geometry("400x400")
     go_back.title("Under Construction")
-    Label(go_back, text="Under Construction", font=20).pack(padx=50, pady=50)
-    Button(go_back, command=go_back.destroy).grid(row=1,column=1)
+    Label(go_back, text="Under Construction", font=20).grid(row=0, column=0)
+    Button(go_back, text="Go Back", command=go_back.destroy).grid(row=1,column=0)
 
 
 customer_window_button = Button(root,
