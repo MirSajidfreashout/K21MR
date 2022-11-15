@@ -6,7 +6,7 @@ from datetime import datetime, date
 conn = mysql.connect(user="root", password="root")
 c = conn.cursor()
 
-c.execute("create database if not exists bachelorpizza;")
+c.execute("CREATE DATABASE IF NOT EXISTS bachelorpizza;")
 c.execute("use bachelorpizza;")
 
 with open("new.txt") as f:
@@ -17,7 +17,7 @@ conn.close()
 
 root = Tk()
 root.geometry("1270x640+0+0")
-root.title("BachelorPizza")
+root.title("Giorno's Pizza")
 ordernum = 0
 root.configure(bg='lightblue')
 
