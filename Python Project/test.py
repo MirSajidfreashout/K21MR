@@ -1,35 +1,37 @@
+from ast import Delete
+from cgitb import text
+from ctypes import resize
+from ctypes.wintypes import HMODULE
+import email
+import sqlite3
+from sqlite3 import Cursor, Row
+from textwrap import fill
 from tkinter import *
 from tkinter import messagebox
 import mysql.connector as mysql
-from datetime import datetime, date
+from datetime import datetime, timedelta, date
 
-conn = mysql.connect(user="root", password="root")
-c = conn.cursor()
-
-c.execute("create database if not exists bachelorpizza;")
-c.execute("use bachelorpizza;")
-
-with open("new.txt") as f:
-    c.execute(f.read())
-conn.commit()
-c.close()
-conn.close()
-
+# conn = sqlite3.connect('bachelorpizza.db')
+# c = conn.cursor()
 root = Tk()
 root.geometry("1270x640+0+0")
-root.title("BachelorPizza")
+root.title("New Pizza")
 ordernum = 0
 root.configure(bg='lightblue')
 
+conn = mysql.connect(host='localhost',
+                        user='root',
+                        password='root',
+                        database='bachelorpizza')
+cursor = conn.cursor()
+cursor.execute("create database if not exist bachelorpizza")
 
 def timefunc():
     e = datetime.now()
     orderid = e_orderid3.get()
-    conn = mysql.connect(host='localhost',
-                         user='root',
-                         password='root',
-                         database='bachelorpizza')
-    cursor = conn.cursor()
+ 
+    print("hi")
+    # c.execute("CREATE TABLE IF NOT EXISTS orderpizza('OrderId' INT(3) NOT NULL,'name' VARCHAR(40) NULL,'address' VARCHAR(100) NULL,'mobile' VARCHAR(10) NULL,'emailid' VARCHAR(30) NULL,'pizzatype' VARCHAR(20) NULL,'time' TEXT NULL,PRIMARY KEY ('OrderId'));")
     query = f"select * from orderpizza where orderid = '{orderid}'"
     cursor.execute(query)
     rows = cursor.fetchall()
@@ -136,25 +138,25 @@ def cancelbtn():
 
 Label(root, text="BachelorPizza", font="arial 20 bold").pack(side=TOP, pady=20)
 
-orderframe = Frame(root, width=500, height=500, bg="white")
+orderframe = Frame(root, width=500, height=500, bg="lightgray")
 
 Label(orderframe, text="Order Pizza", font="arial 20 bold").place(x=200, y=10)
-name = Label(orderframe, text="Name", font="arial 15", bg="white")
+name = Label(orderframe, text="Name", font="arial 15", bg="lightgray")
 name.place(x=20, y=70)
 e_name = Entry(orderframe, font="arial 15")
 e_name.place(x=180, y=70)
 
-address = Label(orderframe, text="Address", font="arial 15", bg="white")
+address = Label(orderframe, text="Address", font="arial 15", bg="lightgray")
 address.place(x=20, y=110)
 e_address = Entry(orderframe, font="arial 15")
 e_address.place(x=180, y=110)
 
-mobile = Label(orderframe, text="Mobile No", font="arial 15", bg="white")
+mobile = Label(orderframe, text="Mobile No", font="arial 15", bg="lightgray")
 mobile.place(x=20, y=150)
 e_mobile = Entry(orderframe, font="arial 15")
 e_mobile.place(x=180, y=150)
 
-emailid = Label(orderframe, text="Email Id", font="arial 15", bg="white")
+emailid = Label(orderframe, text="Email Id", font="arial 15", bg="lightgray")
 emailid.place(x=20, y=190)
 e_emailid = Entry(orderframe, font="arial 15")
 e_emailid.place(x=180, y=190)
@@ -162,7 +164,7 @@ e_emailid.place(x=180, y=190)
 pizzatype = Label(orderframe,
                   text="Pizaa Type",
                   font="arial 15",
-                  bg="white")
+                  bg="lightgray")
 pizzatype.place(x=20, y=230)
 
 size = StringVar()
@@ -187,7 +189,7 @@ orderbtn = Button(orderframe,
 orderbtn.place(x=200, y=360)
 orderframe.pack()
 
-showframe = Frame(root, width=360, height=300, bg='white')
+showframe = Frame(root, width=360, height=300, bg='gray')
 Label(showframe, text="Show Orders", font='arial 20 bold',
       fg='black').place(x=90, y=5)
 list1 = Listbox(showframe, width=37, height=200, font='arial 12')
@@ -195,7 +197,7 @@ list1.place(x=10, y=50)
 show()
 showframe.place(x=10, y=37)
 
-cancelorder = Frame(root, width=360, height=300, bg='white')
+cancelorder = Frame(root, width=360, height=300, bg='gray')
 Label(cancelorder, text="Cancel Order", font='arial 20 bold',
       bg='white').place(x=90, y=5)
 
@@ -229,7 +231,7 @@ cancelfr.place(x=10, y=52)
 
 cancelorder.place(x=900, y=37)
 
-showcancel = Frame(root, width=360, height=300, bg='white')
+showcancel = Frame(root, width=360, height=300, bg='gray')
 Label(showcancel, text="Cancelled Orders", font='arial 20 bold',
       fg='black').place(x=65, y=5)
 list2 = Listbox(showcancel, width=30, font='arial 15')
@@ -237,7 +239,7 @@ list2.place(x=10, y=50)
 cancelorders()
 showcancel.place(x=10, y=300)
 
-cancelorder = Frame(root, width=360, height=300, bg='white')
+cancelorder = Frame(root, width=360, height=300, bg='gray')
 
 Label(cancelorder, text="Track Order", font='arial 20 bold',
       bg='white').place(x=90, y=5)
